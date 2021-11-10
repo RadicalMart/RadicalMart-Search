@@ -12,6 +12,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Form;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Menu\MenuItem;
 use Joomla\CMS\MVC\View\HtmlView;
@@ -57,6 +58,24 @@ class RadicalMartSearchViewSearch extends HtmlView
 	 * @since  __DEPLOY_VERSION__
 	 */
 	protected $link;
+
+	/**
+	 * Form object for search filters.
+	 *
+	 * @var  Form
+	 *
+	 * @since  __DEPLOY_VERSION__
+	 */
+	public $filterForm;
+
+	/**
+	 * The active search filters.
+	 *
+	 * @var  array
+	 *
+	 * @since  __DEPLOY_VERSION__
+	 */
+	public $activeFilters;
 
 	/**
 	 * Active menu item.
@@ -107,11 +126,16 @@ class RadicalMartSearchViewSearch extends HtmlView
 	 */
 	public function display($tpl = null)
 	{
-		$this->state      = $this->get('State');
-		$this->params = $this->state->get('params');
-		$this->items      = $this->get('Items');
-		$this->pagination = $this->get('Pagination');
-		$this->link       = Route::link('site', RadicalMartSearchHelperRoute::getSearchRoute());
+		$this->state         = $this->get('State');
+		$this->params        = $this->state->get('params');
+		$this->items         = $this->get('Items');
+		$this->pagination    = $this->get('Pagination');
+		$this->link          = Route::link('site', RadicalMartSearchHelperRoute::getSearchRoute());
+		$this->filterForm    = $this->get('FilterForm');
+		$this->activeFilters = $this->get('ActiveFilters');
+
+		// Check for errors
+		if (count($errors = $this->get('Errors'))) throw new Exception(implode('\n', $errors), 500);
 
 		// Set menu
 		$this->menu        = Factory::getApplication()->getMenu()->getActive();

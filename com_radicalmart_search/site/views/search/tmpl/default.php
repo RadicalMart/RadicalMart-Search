@@ -11,5 +11,19 @@
 
 defined('_JEXEC') or die;
 
-echo '<pre>', print_r('base create', true), '</pre>';
-echo '<pre>', print_r($this->items, true), '</pre>';
+
+?>
+	<form action="<?php echo $this->link; ?>">
+		<?php echo $this->filterForm->getInput('keyword'); ?>
+		<button>SEARCH</button>
+	</form>
+
+<?php foreach ($this->items as $item): ?>
+	<h3><?php echo $item->title; ?></h3>
+<?php endforeach; ?>
+
+<?php if ($this->items && $this->pagination): ?>
+	<div class="list-pagination uk-margin-medium">
+		<?php echo $this->pagination->getPagesLinks() ?>
+	</div>
+<?php endif; ?>
