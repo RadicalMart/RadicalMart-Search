@@ -19,6 +19,7 @@ class RadicalMartSearchHelperRoute extends RouteHelper
 	 * Fetches product route.
 	 *
 	 * @param   string  $keyword  Search string.
+	 * @param   string  $found    Found search string.
 	 *
 	 * @throws  Exception
 	 *
@@ -26,11 +27,12 @@ class RadicalMartSearchHelperRoute extends RouteHelper
 	 *
 	 * @since  __DEPLOY_VERSION__
 	 */
-	public static function getSearchRoute($keyword = null)
+	public static function getSearchRoute($keyword = null, $found = null)
 	{
 		$link = 'index.php?option=com_radicalmart_search&view=search';
 
 		if (!empty($keyword)) $link .= '&keyword=' . $keyword;
+		if (!empty($found)) $link .= '&found=' . $found;
 
 		return $link;
 	}

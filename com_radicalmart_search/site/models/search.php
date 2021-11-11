@@ -157,9 +157,8 @@ class RadicalMartSearchModelSearch extends ListModel
 
 				return array();
 			}
-			if (strlen($keyword) < 3)
+			if (mb_strlen($keyword) <= 3)
 			{
-				$app->enqueueMessage('Minimum 3');
 				$this->cache[$store] = array();
 
 				return array();

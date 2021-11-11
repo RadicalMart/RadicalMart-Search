@@ -19,6 +19,7 @@ use Joomla\CMS\MVC\View\HtmlView;
 use Joomla\CMS\Pagination\Pagination;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Toolbar\Toolbar;
+use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
 
 class RadicalMartSearchViewSearch extends HtmlView
@@ -31,6 +32,15 @@ class RadicalMartSearchViewSearch extends HtmlView
 	 * @since  __DEPLOY_VERSION__
 	 */
 	public $params;
+
+	/**
+	 * Search keyword string.
+	 *
+	 * @var  string
+	 *
+	 * @since  __DEPLOY_VERSION__
+	 */
+	protected $keyword;
 
 	/**
 	 * An array of items.
@@ -128,6 +138,7 @@ class RadicalMartSearchViewSearch extends HtmlView
 	{
 		$this->state         = $this->get('State');
 		$this->params        = $this->state->get('params');
+		$this->keyword       = $this->state->get('filter.keyword');
 		$this->items         = $this->get('Items');
 		$this->pagination    = $this->get('Pagination');
 		$this->link          = Route::link('site', RadicalMartSearchHelperRoute::getSearchRoute());
@@ -142,7 +153,7 @@ class RadicalMartSearchViewSearch extends HtmlView
 		$this->menuCurrent = ($this->menu
 			&& isset($this->menu->query['option'], $this->menu->query['view'])
 			&& $this->menu->query['option'] === 'com_radicalmart_search'
-			&& $this->menu->query['view'] === 'product');
+			&& $this->menu->query['view'] === 'search');
 
 		// Set params
 		if ($this->menuCurrent)
@@ -164,10 +175,18 @@ class RadicalMartSearchViewSearch extends HtmlView
 			{
 				$this->params->set('seo_search_title', Text::_('COM_RADICALMART_SEARCH_TITLE'));
 			}
+
 			if (empty($this->params->get('seo_search_h1')))
 			{
 				$this->params->set('seo_search_h1', Text::_('COM_RADICALMART_SEARCH_TITLE'));
 			}
+		}
+
+		if (!empty($this->keyword))
+		{
+			$title = Text::sprintf('COM_RADICALMART_SEARCH_TITLE_RESULT', $this->keyword);
+			$this->params->set('seo_search_title', $title);
+			$this->params->set('seo_search_h1', $title);
 		}
 
 		// Set layout
@@ -178,6 +197,20 @@ class RadicalMartSearchViewSearch extends HtmlView
 
 		// Prepare the document
 		$this->_prepareDocument();
+
+		// Products list template script
+		$app                        = Factory::getApplication();
+		$cookieName                 = 'radicalmart_products-list_layout';
+		$this->productsListTemplate = $app->input->cookie->get($cookieName, 'grid');
+		$cookieParams               = array();
+		$cookieParams[]             = 'path=' . Uri::root(true) . '/';
+		if ($domain = $app->get('cookie_domain')) $cookieParams[] = 'domain=' . $domain;
+		if ($app->isSSLConnection()) $cookieParams[] = 'secure';
+
+		$this->document->addScriptDeclaration("function setProductsListTemplate(layout) {
+			document.cookie = '" . $cookieName . "=' + layout + '; expires=' + (new Date(Date.now() + 6.04e+8)).toUTCString() + '; "
+			. implode('; ', $cookieParams) . "';window.location.reload();
+		}");
 
 		return parent::display($tpl);
 	}
@@ -198,7 +231,7 @@ class RadicalMartSearchViewSearch extends HtmlView
 		}
 
 		// Set meta
-		$this->document->setTitle(Text::_('COM_RADICALMART_SEARCH_TITLE'));
+		$this->document->setTitle($this->params->get('seo_search_title', Text::_('COM_RADICALMART_SEARCH_TITLE')));
 		$this->document->setMetadata('robots', 'noindex, nofollow');
 
 		// Set microdata
