@@ -59,7 +59,7 @@ foreach ($this->filterForm->getFieldsets() as $key => $fieldset)
 }
 ?>
 
-<div id="RadicalMart" class="radicalmart-container category">
+<div id="RadicalMart" class="radicalmart-container search">
 	<h1 class="uk-h2 uk-margin uk-margin-remove-top uk-text-center">
 		<?php echo $this->params->get('seo_search_h1', Text::_('COM_RADICALMART_SEARCH_TITLE')); ?>
 	</h1>

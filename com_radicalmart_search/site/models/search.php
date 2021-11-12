@@ -14,6 +14,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Application\SiteApplication;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Multilanguage;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\MVC\Model\ListModel;
 
@@ -28,6 +29,13 @@ class RadicalMartSearchModelSearch extends ListModel
 	 */
 	protected $context = 'com_radicalmart.search';
 
+	/**
+	 * Total products.
+	 *
+	 * @var  int
+	 *
+	 * @since  __DEPLOY_VERSION__
+	 */
 	protected $total = null;
 
 	/**
@@ -208,6 +216,7 @@ class RadicalMartSearchModelSearch extends ListModel
 			$model->setState('filter.published', 1);
 			$model->setState('list.limit', $this->getState('list.limit'));
 			$model->setState('list.start', $this->getState('list.start'));
+			$model->setState('filter.language', Multilanguage::isEnabled());
 			$model->set('context', $this->context);
 
 			$items       = $model->getItems();
