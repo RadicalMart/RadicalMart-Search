@@ -2,7 +2,7 @@
 <extension version="3.9" type="module" client="site" method="upgrade">
 	<name>MOD_RADICALMART_SEARCH</name>
 	<author>Delo Design</author>
-	<creationDate>October 2021</creationDate>
+	<creationDate>November 2021</creationDate>
 	<copyright>Copyright © 2021 Delo Design. All rights reserved.</copyright>
 	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>boss@delo-design.ru</authorEmail>

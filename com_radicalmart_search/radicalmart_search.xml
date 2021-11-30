@@ -2,7 +2,7 @@
 <extension version="3.9" type="component" method="upgrade">
 	<name>COM_RADICALMART_SEARCH</name>
 	<author>Delo Design</author>
-	<creationDate>October 2021</creationDate>
+	<creationDate>November 2021</creationDate>
 	<copyright>Copyright © 2021 Delo Design. All rights reserved.</copyright>
 	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>boss@delo-design.ru</authorEmail>
@@ -26,6 +26,12 @@
 		<language tag="ru-RU">language/ru-RU/ru-RU.com_radicalmart_search.ini</language>
 		<language tag="ru-RU">language/ru-RU/ru-RU.com_radicalmart_search.sys.ini</language>
 	</languages>
+	<media destination="com_radicalmart_search" folder="media">
+		<folder>js</folder>
+	</media>
+	<layouts destination="components/radicalmart_search" folder="layouts">
+		<folder>field</folder>
+	</layouts>
 	<administration>
 		<files folder="admin">
 			<filename>radicalmart_search.php</filename>

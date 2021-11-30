@@ -115,7 +115,7 @@ class RadicalMartSearchModelSearch extends ListModel
 		else
 		{
 			$sql     = array();
-			$columns = array('p.title');
+			$columns = array('p.title', 'p.code');
 			foreach ($columns as $column)
 			{
 				foreach ($search as $word)
