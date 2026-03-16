@@ -1,0 +1,21 @@
+{
+	"$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+	"name": "com_radicalmart_search",
+	"version": "0.0.1-dev",
+	"description": "Search component for RadicalMart",
+	"license": "GPL-3.0-or-later",
+	"assets": [
+		{
+			"name": "com_radicalmart_search.field.ajax-search",
+			"type": "script",
+			"uri": "com_radicalmart_search/field-ajax-searchmin.js",
+			"class": "ReferralsCodeAssetItem",
+			"namespace": "Joomla\\Component\\RadicalMartBonuses\\Site\\WebAsset\\AssetItem",
+			"attributes": {
+				"defer": true,
+				"type": "module"
+			},
+			"version": "auto"
+		}
+	]
+}

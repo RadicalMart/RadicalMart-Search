@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata addfieldprefix="Joomla\Component\RadicalMart\Administrator\Field">
+	<layout title="COM_RADICALMART_SEARCH_VIEW_SEARCH"
+			option="COM_RADICALMART_SEARCH_VIEW_SEARCH_DEFAULT_OPTION">
+		<message>
+			<![CDATA[COM_RADICALMART_SEARCH_VIEW_SEARCH_DESCRIPTION]]>
+		</message>
+	</layout>
+	<fields name="request"/>
+	<fields name="params">
+		<fieldset name="metadata" label="COM_RADICALMART_PARAMS_SEO">
+			<field name="seo_shortcodes" type="shortcodes_table"
+				   label="COM_RADICALMART_SHORTCODES"
+				   sections="category,global"
+				   layout="components.radicalmart.field.shortcodes.menu"/>
+			<field name="seo_search_title" type="text"
+				   label="COM_RADICALMART_PARAMS_SEO_TITLE"/>
+			<field name="seo_category_description" type="textarea"
+				   label="COM_RADICALMART_PARAMS_SEO_DESCRIPTION"
+				   rows="3"
+				   cols="30"/>
+			<field name="seo_search_image" type="media"
+				   label="COM_RADICALMART_PARAMS_SEO_IMAGE"/>
+			<field name="seo_search_robots" type="list"
+				   label="COM_RADICALMART_PARAMS_SEO_ROBOTS">
+				<option value="">JGLOBAL_USE_GLOBAL</option>
+				<option value="index, follow">index, follow</option>
+				<option value="noindex, follow">noindex, follow</option>
+				<option value="index, nofollow">index, nofollow</option>
+				<option value="noindex, nofollow">noindex, nofollow</option>
+			</field>
+			<field name="seo_search_h1" type="text"
+				   label="COM_RADICALMART_PARAMS_SEO_H1"/>
+		</fieldset>
+		<field name="page_title" type="hidden"/>
+		<field name="show_page_heading" type="hidden"/>
+		<field name="page_heading" type="hidden"/>
+		<field name="menu-meta_description" type="hidden"/>
+		<field name="menu-meta_keywords" type="hidden"/>
+		<field name="robots" type="hidden"/>
+		<field name="secure" type="hidden"/>
+	</fields>
+</metadata>
