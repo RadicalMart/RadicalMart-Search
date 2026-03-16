@@ -36,8 +36,18 @@ abstract class AssociationHelper
 	{
 		$app       = Factory::getApplication();
 		$view      = ($view === null) ? $app->input->get('view') : $view;
-		$id        = (empty($id)) ? $app->input->getInt('id') : $id;
 		$languages = LanguageHelper::getContentLanguages(false, false, null, 'ordering', 'asc');
+
+		if ($view === 'search' && count($languages) > 0)
+		{
+			$result = [];
+			foreach ($languages as $language)
+			{
+				$result[$language->lang_code] = RouteHelper::getSearchRoute($language->lang_code);
+			}
+
+			return $result;
+		}
 
 		return [];
 	}
