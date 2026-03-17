@@ -12,9 +12,9 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
-use Joomla\CMS\Router\Route;
+
+$displayData['autocomplete'] = 'false';
 
 extract($displayData);
 
