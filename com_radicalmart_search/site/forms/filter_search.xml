@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<form>
+<form addfieldprefix="Joomla\Component\RadicalMartSearch\Site\Field">
 	<fieldset name="search">
-		<field name="keyword" type="ajax_search" hint="JSEARCH_FILTER"/>
+		<field name="keyword" type="Search_Ajax" hint="JSEARCH_FILTER"/>
 	</fieldset>
 </form>

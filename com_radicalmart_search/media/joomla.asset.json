@@ -8,9 +8,9 @@
 		{
 			"name": "com_radicalmart_search.field.ajax-search",
 			"type": "script",
-			"uri": "com_radicalmart_search/field-ajax-searchmin.js",
-			"class": "ReferralsCodeAssetItem",
-			"namespace": "Joomla\\Component\\RadicalMartBonuses\\Site\\WebAsset\\AssetItem",
+			"uri": "com_radicalmart_search/field-ajax-search.min.js",
+			"class": "SearchAjaxField",
+			"namespace": "Joomla\\Component\\RadicalMartSearch\\Site\\WebAsset\\AssetItem",
 			"attributes": {
 				"defer": true,
 				"type": "module"
