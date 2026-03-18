@@ -15,6 +15,7 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
 use Joomla\Registry\Registry;
 
 /**
@@ -27,55 +28,14 @@ use Joomla\Registry\Registry;
  * @var   Registry $params Module params.
  */
 
-if (!$form) return;
-
-if (Factory::getApplication()->getTemplate() !== 'yootheme'
-	&& ComponentHelper::getParams('com_radicalmart')->get('uikit', 1))
-{
-	HTMLHelper::stylesheet('com_radicalmart/uikit.min.css', array('version' => 'auto', 'relative' => true));
-	HTMLHelper::script('com_radicalmart/uikit.min.js', array('version' => 'auto', 'relative' => true));
-	HTMLHelper::script('com_radicalmart/uikit-icons.min.js', array('version' => 'auto', 'relative' => true));
-}
-
-
-$fieldsets = array();
-foreach ($form->getFieldsets() as $key => $fieldset)
-{
-	foreach ($form->getFieldset($key) as $field)
-	{
-		$name  = $field->fieldname;
-		$group = $field->group;
-		$type  = strtolower($field->type);
-		$class = $form->getFieldAttribute($name, 'class', '', $group);
-		$input = $field->input;
-		if ($type === 'text' || $type === 'email') $class .= ' uk-input';
-		elseif ($type === 'list' || preg_match('#<select#', $input)) $class .= ' uk-select';
-		elseif ($type === 'textarea' || preg_match('#<textarea#', $input)) $class .= ' uk-textarea';
-		elseif ($type === 'range') $class .= ' uk-range';
-
-		$form->setFieldAttribute($name, 'class', $class, $group);
-	}
-}
 ?>
 <div id="mod_radicalmart_search_<?php echo $module->id; ?>" class="radicalmart-container search">
-	<form action="<?php echo $action; ?>" method="get"
-		  class="uk-form uk-child-width-expand@m uk-grid-small uk-width-1-1" uk-grid="">
-		<?php foreach ($form->getFieldsets() as $key => $fieldset):
-			foreach ($form->getFieldset($key) as $field):
-				$name = $field->fieldname;
-				$group = $field->group;
-				$id = 'mod_radicalmart_filter_' . $module->id . '_' . $field->id;
-				$form->setFieldAttribute($name, 'id', $id, $group);
-				?>
-				<div>
-					<?php echo $form->getInput($name, $group); ?>
-				</div>
-				<?php
-				$form->setFieldAttribute($name, 'id', '', $group);
-			endforeach;
-		endforeach; ?>
-		<div class="uk-width-auto@s">
-			<button class="uk-button uk-button-primary" type="submit"><span uk-search-icon></span>
+	<form action="<?php echo $action; ?>" class="row row-cols-auto" method="get">
+		<div class="input-group mb-3">
+			<?php echo $form->getInput('keyword'); ?>
+			<button type="submit" class="btn btn-primary">
+				<span class="icon-search icon-white" aria-hidden="true"></span>
+				<?php echo Text::_('JSEARCH_FILTER_SUBMIT'); ?>
 			</button>
 		</div>
 	</form>

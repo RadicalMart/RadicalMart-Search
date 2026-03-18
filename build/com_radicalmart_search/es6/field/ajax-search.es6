@@ -73,6 +73,9 @@ class RadicalMartSearchFieldSearchAjax {
 
 		} catch (error) {
 			error = (error instanceof Error) ? error : new Error(error);
+			if (error.request_aborted) {
+				return
+			}
 			eventData.error = error;
 			EventsUtil.triggerCustomEvent('onRadicalMartSearchAjaxError', eventData, this.container, false);
 			console.error(error);

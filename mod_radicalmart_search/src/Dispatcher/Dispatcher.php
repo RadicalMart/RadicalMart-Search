@@ -16,8 +16,31 @@ namespace Joomla\Module\RadicalMartSearch\Site\Dispatcher;
 use Joomla\CMS\Dispatcher\AbstractModuleDispatcher;
 use Joomla\CMS\Helper\HelperFactoryAwareInterface;
 use Joomla\CMS\Helper\HelperFactoryAwareTrait;
+use Joomla\Module\RadicalMartSearch\Site\Helper\RadicalMartSearchHelper;
 
 class Dispatcher extends AbstractModuleDispatcher implements HelperFactoryAwareInterface
 {
 	use HelperFactoryAwareTrait;
+
+	/**
+	 * Returns the layout data.
+	 *
+	 * @throws \Exception
+	 *
+	 * @return  array Module layout data.
+	 *
+	 * @since  __DEPLOY_VERSION__
+	 */
+	protected function getLayoutData(): array
+	{
+		$data = parent::getLayoutData();
+
+		/** @var RadicalMartSearchHelper $helper */
+		$helper = $this->getHelperFactory()->getHelper('RadicalMartSearchHelper');
+
+		$data['action'] = $helper->getAction($data['params']);
+		$data['form']   = $helper->getForm();
+
+		return $data;
+	}
 }

@@ -24,6 +24,11 @@
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
+				<field name="menu_item" type="menuitem"
+					   label="MOD_RADICALMART_SEARCH_PARAMS_MENU_ITEM"
+					   filter="integer">
+					<option value="0">MOD_RADICALMART_SEARCH_PARAMS_MENU_ITEM_SELECT</option>
+				</field>
 			</fieldset>
 			<fieldset name="advanced">
 				<field name="layout" type="modulelayout"
