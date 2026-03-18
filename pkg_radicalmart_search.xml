@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" method="upgrade">
+	<name>PKG_RADICALMART_SEARCH</name>
+	<packagename>radicalmart_search</packagename>
+	<author>RadicalMart Team</author>
+	<creationDate>March 2026</creationDate>
+	<copyright>Copyright © 2026 RadicalMart. All rights reserved.</copyright>
+	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>info@radicalmart.ru</authorEmail>
+	<authorUrl>https://radicalmart.ru/</authorUrl>
+	<version>1.0.0</version>
+	<description>PKG_RADICALMART_SEARCH_DESCRIPTION</description>
+	<scriptfile>script.php</scriptfile>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/pkg_radicalmart_search.sys.ini</language>
+		<language tag="ru-RU">ru-RU/pkg_radicalmart_search.sys.ini</language>
+	</languages>
+	<files>
+		<folder type="component" id="com_radicalmart_search">com_radicalmart_search</folder>
+		<folder type="module" client="site" id="mod_radicalmart_search">mod_radicalmart_search</folder>
+		<folder type="plugin" group="radicalmart" id="search">plg_radicalmart_search</folder>
+	</files>
+	<updateservers>
+		<server type="extension" priority="1" name="RadicalMart - Search">
+			https://sovmart.ru/update?element=pkg_radicalmart_search
+		</server>
+	</updateservers>
+</extension>

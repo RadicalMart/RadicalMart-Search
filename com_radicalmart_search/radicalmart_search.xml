@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" method="upgrade">
+	<name>COM_RADICALMART_SEARCH</name>
+	<author>RadicalMart Team</author>
+	<creationDate>March 2026</creationDate>
+	<copyright>Copyright © 2026 RadicalMart. All rights reserved.</copyright>
+	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>info@radicalmart.ru</authorEmail>
+	<authorUrl>https://radicalmart.ru/</authorUrl>
+	<version>1.0.0</version>
+	<description>COM_RADICALMART_SEARCH_DESCRIPTION</description>
+	<namespace path="src">Joomla\Component\RadicalMartSearch</namespace>
+	<scriptfile>script.php</scriptfile>
+	<files folder="site">
+		<folder>forms</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+	<languages folder="site/language">
+		<language tag="en-GB">en-GB/com_radicalmart_search.ini</language>
+		<language tag="en-GB">en-GB/com_radicalmart_search.sys.ini</language>
+		<language tag="ru-RU">ru-RU/com_radicalmart_search.ini</language>
+		<language tag="ru-RU">ru-RU/com_radicalmart_search.sys.ini</language>
+	</languages>
+	<administration>
+		<files folder="admin">
+			<folder>services</folder>
+			<folder>src</folder>
+		</files>
+		<languages folder="admin/language">
+			<language tag="en-GB">en-GB/com_radicalmart_search.ini</language>
+			<language tag="en-GB">en-GB/com_radicalmart_search.sys.ini</language>
+			<language tag="ru-RU">ru-RU/com_radicalmart_search.ini</language>
+			<language tag="ru-RU">ru-RU/com_radicalmart_search.sys.ini</language>
+		</languages>
+	</administration>
+	<media destination="com_radicalmart_search" folder="media">
+		<folder>js</folder>
+		<filename>joomla.asset.json</filename>
+	</media>
+	<layouts destination="components/radicalmart_search" folder="layouts">
+		<folder>field</folder>
+	</layouts>
+</extension>
