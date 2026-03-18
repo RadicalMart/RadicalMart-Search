@@ -2,7 +2,7 @@
 /*
  * @package     RadicalMart Search Package
  * @subpackage  com_radicalmart_search
- * @version     __DEPLOY_VERSION__
+ * @version     1.0.0
  * @author      RadicalMart Team - radicalmart.ru
  * @copyright   Copyright (c) 2026 RadicalMart. All rights reserved.
  * @license     GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
@@ -32,7 +32,7 @@ return new class implements ServiceProviderInterface {
 	 *
 	 * @param   Container  $container  The DI container.
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	public function register(Container $container): void
 	{

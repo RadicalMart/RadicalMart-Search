@@ -2,7 +2,7 @@
 /*
  * @package     RadicalMart Search Package
  * @subpackage  com_radicalmart_search
- * @version     __DEPLOY_VERSION__
+ * @version     1.0.0
  * @author      RadicalMart Team - radicalmart.ru
  * @copyright   Copyright (c) 2026 RadicalMart. All rights reserved.
  * @license     GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
@@ -30,7 +30,7 @@ abstract class AssociationHelper
 	 *
 	 * @return  array   Array of associations for the item.
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	public static function getAssociations(int $id = 0, string $view = null, string $layout = null): array
 	{

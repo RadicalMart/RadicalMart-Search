@@ -2,7 +2,7 @@
 /*
  * @package     RadicalMart Search Package
  * @subpackage  com_radicalmart_search
- * @version     __DEPLOY_VERSION__
+ * @version     1.0.0
  * @author      RadicalMart Team - radicalmart.ru
  * @copyright   Copyright (c) 2026 RadicalMart. All rights reserved.
  * @license     GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
@@ -23,7 +23,7 @@ class AssociationsHelper extends AssociationExtensionHelper
 	 *
 	 * @var array $extension
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 1.0.0
 	 */
 	protected $extension = 'com_radicalmart_search';
 
@@ -32,7 +32,7 @@ class AssociationsHelper extends AssociationExtensionHelper
 	 *
 	 * @var     bool $associationsSupport
 	 *
-	 * @since   __DEPLOY_VERSION__
+	 * @since   1.0.0
 	 */
 	protected $associationsSupport = true;
 
@@ -46,7 +46,7 @@ class AssociationsHelper extends AssociationExtensionHelper
 	 *
 	 * @return  array   Array of associations for the item.
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	public function getAssociationsForItem($id = 0, $view = null): array
 	{

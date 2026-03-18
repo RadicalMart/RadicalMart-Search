@@ -2,7 +2,7 @@
 /*
  * @package     RadicalMart Search Package
  * @subpackage  mod_radicalmart_search
- * @version     __DEPLOY_VERSION__
+ * @version     1.0.0
  * @author      RadicalMart Team - radicalmart.ru
  * @copyright   Copyright (c) 2026 RadicalMart. All rights reserved.
  * @license     GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
@@ -29,7 +29,7 @@ class RadicalMartSearchHelper
 	 *
 	 * @var  Form|null
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	protected ?Form $_form = null;
 
@@ -38,7 +38,7 @@ class RadicalMartSearchHelper
 	 *
 	 * @var  SearchModel|null
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	protected ?SearchModel $_model = null;
 
@@ -51,7 +51,7 @@ class RadicalMartSearchHelper
 	 *
 	 * @return  string  The action url.
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	public function getAction(Registry $params): string
 	{
@@ -74,7 +74,7 @@ class RadicalMartSearchHelper
 	 *
 	 * @return  Form|false  The Form object or false on error.
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	public function getForm(): false|Form
 	{
@@ -98,7 +98,7 @@ class RadicalMartSearchHelper
 	 *
 	 * @return  SearchModel  Products mode.
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	protected function getModel(): SearchModel
 	{

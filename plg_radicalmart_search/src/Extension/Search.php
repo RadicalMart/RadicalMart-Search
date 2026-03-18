@@ -2,7 +2,7 @@
 /*
  * @package     RadicalMart Package
  * @subpackage  plg_system_radicalmart
- * @version     __DEPLOY_VERSION__
+ * @version     1.0.0
  * @author      RadicalMart Team - radicalmart.ru
  * @copyright   Copyright (c) 2026 RadicalMart. All rights reserved.
  * @license     GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
@@ -60,7 +60,7 @@ class Search extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @var    bool
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	protected $autoloadLanguage = true;
 
@@ -69,7 +69,7 @@ class Search extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @return  array
 	 *
-	 * @since  __DEPLOY_VERSION__
+	 * @since  1.0.0
 	 */
 	public static function getSubscribedEvents(): array
 	{
@@ -87,7 +87,7 @@ class Search extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws \Exception
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 1.0.0
 	 */
 	public function onRadicalMartPrepareConfigForm(Form $form, mixed $data = []): void
 	{
@@ -101,7 +101,7 @@ class Search extends CMSPlugin implements SubscriberInterface
 	 *
 	 * @throws \Exception
 	 *
-	 * @since __DEPLOY_VERSION__
+	 * @since 1.0.0
 	 */
 	public function onRadicalMartPrepareConfigGroups(array &$groups): void
 	{

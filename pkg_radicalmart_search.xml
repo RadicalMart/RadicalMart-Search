@@ -8,7 +8,7 @@
 	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>info@radicalmart.ru</authorEmail>
 	<authorUrl>https://radicalmart.ru/</authorUrl>
-	<version>0.0.1-dev</version>
+	<version>1.0.0</version>
 	<description>PKG_RADICALMART_SEARCH_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
 	<languages folder="language">
