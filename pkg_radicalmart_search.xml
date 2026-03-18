@@ -22,7 +22,7 @@
 	</files>
 	<updateservers>
 		<server type="extension" priority="1" name="RadicalMart - Search">
-			https://radicalmart.ru/update?element=pkg_radicalmart_search
+			https://sovmart.ru/update?element=pkg_radicalmart_search
 		</server>
 	</updateservers>
 </extension>
