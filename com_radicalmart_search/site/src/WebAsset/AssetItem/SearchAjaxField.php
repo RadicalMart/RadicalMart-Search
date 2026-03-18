@@ -16,6 +16,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\WebAsset\WebAssetAttachBehaviorInterface;
 use Joomla\CMS\WebAsset\WebAssetItem;
+use Joomla\Component\RadicalMart\Administrator\Helper\ParamsHelper;
 
 class SearchAjaxField extends WebAssetItem implements WebAssetAttachBehaviorInterface
 {
@@ -40,7 +41,8 @@ class SearchAjaxField extends WebAssetItem implements WebAssetAttachBehaviorInte
 		$app->getLanguage()->load('com_radicalmart');
 
 		$doc->addScriptOptions($key, [
-			'controller' => Route::link('site', 'index.php?option=com_radicalmart_search', false),
+			'controller'    => Route::link('site', 'index.php?option=com_radicalmart_search', false),
+			'search_length' => (int) ParamsHelper::getComponentParams()->get('search_length', 3),
 		]);
 	}
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldprefix="Joomla\Component\RadicalMart\Administrator\Field">
+	<fieldset name="search_global" label="PLG_RADICALMART_SEARCH_PARAMS_GLOBAL">
+		<field name="search_length" type="number"
+			   label="PLG_RADICALMART_SEARCH_PARAMS_GLOBAL_LENGTH"
+			   min="1"
+			   default="3"/>
+		<field name="search_try" type="number"
+			   label="PLG_RADICALMART_SEARCH_PARAMS_GLOBAL_TRY"
+			   min="1"
+			   default="5"/>
+		<field name="search_results" type="number"
+			   label="PLG_RADICALMART_SEARCH_PARAMS_GLOBAL_RESULTS"
+			   min="1"
+			   default="12"/>
+	</fieldset>
+	<fieldset name="search_global_note" label="PLG_RADICALMART_SEARCH_PARAMS_GLOBAL_NOTE">
+		<field name="search_note" type="note"
+			   description="PLG_RADICALMART_SEARCH_PARAMS_GLOBAL_NOTE_DESCRIPTION"/>
+	</fieldset>
+	<fieldset name="search_seo" label="PLG_RADICALMART_SEARCH_PARAMS_SEO">
+		<field name="seo_seach_title" type="text"
+			   label="COM_RADICALMART_PARAMS_SEO_TITLE"
+			   hint="PLG_RADICALMART_SEARCH_PARAMS_SEO_SEARCH_TITLE_HINT"/>
+		<field name="seo_seach_h1" type="text"
+			   label="COM_RADICALMART_PARAMS_SEO_H1"
+			   hint="PLG_RADICALMART_SEARCH_PARAMS_SEO_SEARCH_H1_HINT"/>
+	</fieldset>
+	<fieldset name="search_display" label="PLG_RADICALMART_SEARCH_PARAMS_DISPLAY">
+		<field name="search_layout" type="componentlayout"
+			   label="PLG_RADICALMART_SEARCH_PARAMS_DISPLAY_SEARCH_LAYOUT"
+			   extension="com_radicalmart_search"
+			   view="search"
+			   class="form-select"/>
+	</fieldset>
+</form>

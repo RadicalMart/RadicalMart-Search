@@ -17,6 +17,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\Component\Joomlaupdate\Api\Controller\BaseController;
+use Joomla\Component\RadicalMart\Administrator\Helper\ParamsHelper;
 use Joomla\Component\RadicalMart\Administrator\Traits\Controller\JsonTrait;
 use Joomla\Component\RadicalMartSearch\Site\Helper\RouteHelper;
 use Joomla\Component\RadicalMartSearch\Site\Model\SearchModel;
@@ -38,11 +39,12 @@ class SearchController extends BaseController
 	{
 		$keyword = trim($this->input->get('keyword', '', 'text'));
 
-		if (mb_strlen($keyword) < 3)
+		$search_length = (int) ParamsHelper::getComponentParams()->get('search_length', 3);
+		if (mb_strlen($keyword) < $search_length)
 		{
 			$this->code    = 404;
-			$this->message = Text::_((empty($keyword) ? 'COM_RADICALMART_SEARCH_ERROR_EMPTY_KEYWORD'
-				: 'COM_RADICALMART_SEARCH_ERROR_KEYWORD_LENGTH'));
+			$this->message = (empty($keyword) ? Text::_('COM_RADICALMART_SEARCH_ERROR_EMPTY_KEYWORD')
+				: Text::sprintf('COM_RADICALMART_SEARCH_ERROR_KEYWORD_LENGTH', $search_length));
 
 			return $this->setJsonResponse();
 		}

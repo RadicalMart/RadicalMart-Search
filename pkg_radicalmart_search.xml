@@ -18,6 +18,7 @@
 	<files>
 		<folder type="component" id="com_radicalmart_search">com_radicalmart_search</folder>
 		<folder type="module" client="site" id="mod_radicalmart_search">mod_radicalmart_search</folder>
+		<folder type="plugin" group="radicalmart" id="search">plg_radicalmart_search</folder>
 	</files>
 	<updateservers>
 		<server type="extension" priority="1" name="RadicalMart - Search">

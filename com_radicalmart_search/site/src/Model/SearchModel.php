@@ -14,7 +14,9 @@ namespace Joomla\Component\RadicalMartSearch\Site\Model;
 \defined('_JEXEC') or die;
 
 use Joomla\CMS\Application\SiteApplication;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
+use Joomla\Component\RadicalMart\Administrator\Helper\ParamsHelper;
 use Joomla\Component\RadicalMart\Site\Model\ProductsModel;
 use Joomla\Component\RadicalMart\Site\Traits\Model\CategoryItemsTrait;
 use Joomla\Component\RadicalMart\Site\Traits\Model\ProductsFiltersTrait;
@@ -49,13 +51,22 @@ class SearchModel extends ProductsModel
 		$app   = Factory::getApplication();
 		$input = $app->getInput();
 
-
 		// Set request states
 		$this->setState('filter.keyword', $input->getString('keyword', ''));
 		$this->setState('filter.found', $input->getString('found', ''));
 
 		// List state information
 		parent::populateState($ordering, $direction);
+
+		// Set params
+		$params = ParamsHelper::getComponentParams();
+		$params->merge($app->getParams());
+
+		$this->setState('params', $params);
+
+		// Set limit
+		$this->list_limit = $params->get('search_results', 12);
+		$this->setState('list.limit', $this->list_limit);
 	}
 
 	/**
@@ -121,6 +132,7 @@ class SearchModel extends ProductsModel
 
 		try
 		{
+			$params  = $this->getState('params', ParamsHelper::getComponentParams());
 			$keyword = $this->getState('filter.keyword');
 			if ($this->getState('list.start') > 0 && $this->getState('filter.found'))
 			{
@@ -135,18 +147,18 @@ class SearchModel extends ProductsModel
 			}
 			$keyword = trim(str_replace(['"', "'", '«', '»', '  '], ' ', $keyword));
 			$this->setState('filter.keyword', $keyword);
-
-			if (mb_strlen($keyword) < 3)
+			$search_length = (int) $params->get('search_length', 3);
+			if (mb_strlen($keyword) < $search_length)
 			{
 				$this->cache[$store] = [];
 
 				return [];
 			}
 
-			$words = explode(' ', $keyword);
-			$i     = 0;
-			$max   = 5;
-			$ids   = [];
+			$words      = explode(' ', $keyword);
+			$i          = 0;
+			$search_try = (int) $params->get('search_try', 5);
+			$ids        = [];
 			while (true)
 			{
 				if ($i === 0)
@@ -155,8 +167,14 @@ class SearchModel extends ProductsModel
 				}
 
 				$i++;
+				if ($i > $search_try)
+				{
 
-				if (count($words) === 0)
+					break;
+				}
+
+				$check = implode('', $words);
+				if (empty($check))
 				{
 					break;
 				}
@@ -168,19 +186,24 @@ class SearchModel extends ProductsModel
 					break;
 				}
 
-				if ($i >= $max)
-				{
-					break;
-				}
-
 				$source = $words;
 				$words  = [];
+				$update = false;
 				foreach ($source as $w => $word)
 				{
-					if (mb_strlen($word) > 3)
+					$new_word = mb_substr($word, 0, -1);
+					if (empty($new_word) || mb_strlen($new_word) < $search_length)
 					{
-						$words[$w] = mb_substr($word, 0, -1);
+						unset($words[$w]);
+						continue;
 					}
+					$words[$w] = $new_word;
+					$update    = true;
+				}
+
+				if (!$update)
+				{
+					break;
 				}
 			}
 

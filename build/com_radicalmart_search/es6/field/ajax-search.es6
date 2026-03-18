@@ -21,17 +21,13 @@ class RadicalMartSearchFieldSearchAjax {
 		this.id = id;
 		this.attribute = 'radicalmart_search-field-search-ajax';
 		this.container = container;
-
 		this.element_field = container.querySelector('#' + id);
-
-		console.log(this.element_field);
-		console.log(this.id);
-
 		if (!this.element_field || !controller) {
 			return;
 		}
 
 		this.options = options;
+		this.search_length = (options.search_length) ? parseInt(options.search_length) : 3;
 		this.controller = controller;
 		this.ajax = new JoomlaAjax(controller);
 
@@ -52,7 +48,7 @@ class RadicalMartSearchFieldSearchAjax {
 
 	async search() {
 		let keyword = this.element_field.value;
-		if (keyword.length < 3) {
+		if (keyword.length < this.search_length) {
 			return;
 		}
 
