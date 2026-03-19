@@ -30,7 +30,7 @@ class Router extends RouterView
 	 *
 	 * @since  2.0.0
 	 */
-	protected $name = 'radicalmart_bonuses';
+	protected $name = 'radicalmart_search';
 
 	/**
 	 * Router constructor.
