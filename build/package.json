@@ -1,6 +1,6 @@
 {
 	"name": "radicalmart-searc",
-	"version": "1.0.1-dev",
+	"version": "1.0.1",
 	"description": "Search for RadicalMart",
 	"private": true,
 	"scripts": {
