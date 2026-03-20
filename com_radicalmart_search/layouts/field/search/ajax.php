@@ -52,45 +52,53 @@ extract($displayData);
 
 
 // Load assets
-/** @var \Joomla\CMS\WebAsset\WebAssetManager $assets */
-$assets         = Factory::getApplication()->getDocument()->getWebAssetManager();
+/** @var \Joomla\CMS\Document\Document $document */
+$document       = Factory::getApplication()->getDocument();
+$assets         = $document->getWebAssetManager();
 $assetsRegistry = $assets->getRegistry();
 
 $assetsRegistry->addExtensionRegistryFile('com_radicalmart_search');
 $assets->useScript('com_radicalmart_search.field.ajax-search')
 		->useScript('bootstrap.dropdown');
 
+$document_key = 'com_radicalmart_search.field.ajax-search.loader';
 ?>
-<div id="<?php echo $id . '_container'; ?>" radicalmart_search-field-search-ajax="container"
-	 data-field_id="<?php echo $id; ?>" class="dropdown" style="min-width: 300px">
-	<?php echo LayoutHelper::render('joomla.form.field.text', $displayData); ?>
-	<ul radicalmart_search-field-search-ajax="result" class="dropdown-menu w-100">
-	</ul>
-</div>
-<script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function () {
-		let container = document.querySelector('#<?php echo $id . '_container'; ?>'),
-			result = container.querySelector('[radicalmart_search-field-search-ajax="result"]'),
-			dropdown = new window.bootstrap.Dropdown(container, {
-				autoClose: true
-			});
-		container.addEventListener('onRadicalMartSearchAjaxError', (event) => {
-			let data = event.detail;
-			Joomla.renderMessages({
-				error: [data.error.message]
-			});
-		});
-		container.addEventListener('onRadicalMartSearchAjaxAfter', (event) => {
-			console.log('onRadicalMartSearchAjaxAfter');
-			let data = event.detail;
-			result.innerHTML = data.response.html;
-			dropdown.show();
-		});
 
-		document.addEventListener('pointerdown', (event) => {
-			if (!container.contains(event.target)) {
-				dropdown.hide();
-			}
+	<div radicalmart_search-field-search-ajax="container" data-field_id="<?php echo $id; ?>" class="dropdown"
+		 style="min-width: 300px">
+		<?php echo LayoutHelper::render('joomla.form.field.text', $displayData); ?>
+		<ul radicalmart_search-field-search-ajax="result" class="dropdown-menu w-100">
+		</ul>
+	</div>
+
+<?php if (empty($document->getScriptOptions($document_key))): ?>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', () => {
+			document.querySelectorAll('[radicalmart_search-field-search-ajax="container"]').forEach((container) => {
+				let result = container.querySelector('[radicalmart_search-field-search-ajax="result"]'),
+					dropdown = new window.bootstrap.Dropdown(container, {
+						autoClose: true
+					});
+				container.addEventListener('onRadicalMartSearchAjaxError', (event) => {
+					let data = event.detail;
+					Joomla.renderMessages({
+						error: [data.error.message]
+					});
+				});
+				container.addEventListener('onRadicalMartSearchAjaxAfter', (event) => {
+					console.log('onRadicalMartSearchAjaxAfter');
+					let data = event.detail;
+					result.innerHTML = data.response.html;
+					dropdown.show();
+				});
+
+				document.addEventListener('pointerdown', (event) => {
+					if (!container.contains(event.target)) {
+						dropdown.hide();
+					}
+				});
+			});
 		});
-	});
-</script>
+	</script>
+	<?php $document->addScriptOptions($document_key, ['init' => 1]);
+endif; ?>
