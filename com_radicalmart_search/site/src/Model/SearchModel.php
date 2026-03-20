@@ -67,6 +67,8 @@ class SearchModel extends ProductsModel
 		// Set limit
 		$this->list_limit = $params->get('search_results', 12);
 		$this->setState('list.limit', $this->list_limit);
+		$this->setState('list.ordering', 'p.title');
+		$this->setState('list.direction', 'asc');
 	}
 
 	/**
