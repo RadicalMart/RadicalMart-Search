@@ -62,20 +62,12 @@ $assets->useScript('com_radicalmart_search.field.ajax-search')
 		->useScript('bootstrap.dropdown');
 
 $document_key = 'com_radicalmart_search.field.ajax-search.loader';
-?>
-
-	<div radicalmart_search-field-search-ajax="container" data-field_id="<?php echo $id; ?>" class="dropdown"
-		 style="min-width: 300px">
-		<?php echo LayoutHelper::render('joomla.form.field.text', $displayData); ?>
-		<ul radicalmart_search-field-search-ajax="result" class="dropdown-menu w-100">
-		</ul>
-	</div>
-
-<?php if (empty($document->getScriptOptions($document_key))): ?>
-	<script type="text/javascript">
+if (empty($document->getScriptOptions($document_key)))
+{
+	$assets->addInlineScript("
 		document.addEventListener('DOMContentLoaded', () => {
-			document.querySelectorAll('[radicalmart_search-field-search-ajax="container"]').forEach((container) => {
-				let result = container.querySelector('[radicalmart_search-field-search-ajax="result"]'),
+			document.querySelectorAll('[radicalmart_search-field-search-ajax=\"container\"]').forEach((container) => {
+				let result = container.querySelector('[radicalmart_search-field-search-ajax=\"result\"]'),
 					dropdown = new window.bootstrap.Dropdown(container, {
 						autoClose: true
 					});
@@ -91,7 +83,7 @@ $document_key = 'com_radicalmart_search.field.ajax-search.loader';
 					result.innerHTML = data.response.html;
 					dropdown.show();
 				});
-
+		
 				document.addEventListener('pointerdown', (event) => {
 					if (!container.contains(event.target)) {
 						dropdown.hide();
@@ -99,6 +91,13 @@ $document_key = 'com_radicalmart_search.field.ajax-search.loader';
 				});
 			});
 		});
-	</script>
-	<?php $document->addScriptOptions($document_key, ['init' => 1]);
-endif; ?>
+	");
+	$document->addScriptOptions($document_key, ['init' => 1]);
+}
+?>
+<div radicalmart_search-field-search-ajax="container" data-field_id="<?php echo $id; ?>" class="dropdown"
+	 style="min-width: 300px">
+	<?php echo LayoutHelper::render('joomla.form.field.text', $displayData); ?>
+	<ul radicalmart_search-field-search-ajax="result" class="dropdown-menu w-100">
+	</ul>
+</div>
