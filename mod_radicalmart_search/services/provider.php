@@ -2,7 +2,7 @@
 /*
  * @package     RadicalMart Package
  * @subpackage  mod_radicalmart_analytics
- * @version     __DEPLOY_VERSION__
+ * @version     1.0.2
  * @author      RadicalMart Team - radicalmart.ru
  * @copyright   Copyright (c) 2026 RadicalMart. All rights reserved.
  * @license     GNU/GPL license: https://www.gnu.org/copyleft/gpl.html
