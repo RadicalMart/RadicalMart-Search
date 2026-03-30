@@ -100,7 +100,10 @@ class SearchModel extends ProductsModel
 			foreach ($keywords as $word)
 			{
 				$sql[] = $db->quoteName($column)
-					. ' REGEXP ' . $db->quote('([[:<:]]|^)' . $db->escape($word) . '.*?([[:>:]]|$)');
+					. ' REGEXP ' . $db->quote('(\\b|^)' . $db->escape($word) . '.*?(\\b|$)');
+
+				$sql[] = $db->quoteName($column)
+					. ' LIKE ' . $db->quote('%' . $db->escape($word) . '%');
 			}
 		}
 		$query->where('(' . implode(' OR ', $sql) . ')');
